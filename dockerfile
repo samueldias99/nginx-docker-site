@@ -1,11 +1,11 @@
 # Usa a imagem oficial do Nginx
 FROM nginx:latest
 
-# Remove os arquivos de configuração padrão do Nginx
-RUN rm /etc/nginx/conf.d/default.conf
+# Define o diretório de trabalho dentro do contêiner
+WORKDIR /usr/share/nginx/html
 
-# Copia nossa própria configuração do Nginx
-#COPY nginx.conf /etc/nginx/conf.d/
+# Remove o arquivo index.html padrão do Nginx
+RUN rm index.html
 
-# Copia os arquivos do nosso site para a pasta padrão do Nginx
-COPY ./html /usr/share/nginx/html
+# Copia o seu index.html para o contêiner
+COPY ./html/index.html .
